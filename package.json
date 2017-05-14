@@ -1,0 +1,29 @@
+{
+  "name": "mapdsl",
+  "version": "0.0.1",
+  "description": "A MongoDB inspired Map() DSL.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LouisT/MapDSL.git"
+  },
+  "keywords": [
+    "map",
+    "query",
+    "dsl",
+    "search"
+  ],
+  "author": {
+    "name": "Louis T.",
+    "email": "louist@ltdev.im",
+    "web": "https://lou.ist/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LouisT/MapDSL/issues"
+  },
+  "homepage": "https://github.com/LouisT/MapDSL#readme"
+}
