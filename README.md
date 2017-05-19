@@ -1,4 +1,4 @@
-MapDSL (WIP)
+MapDSL (WIP) [![Build Status](https://travis-ci.org/LouisT/MapDSL.svg?branch=master)](https://travis-ci.org/LouisT/MapDSL)
 ===
 A __[MongoDB]__ inspired __[ES6 Map()]__ DSL.
 
