@@ -16,10 +16,9 @@ Implemented [Query Operators]
   * $regex
 * Array
 
-
-### Example:
+### Example: `MapDSL.find()`
 ```javascript
-let MapDSL = new (require('mapdsl'))(),
+const MapDSL = new (require('mapdsl'))(),
     util = require('util'),
     _print = (obj) => {
         console.log('%s\n', util.inspect(obj, { depth: null, showHidden: true }));
@@ -75,9 +74,6 @@ _print(MapDSL.find({
    '$regex': /String$/i
 }));
 _print(MapDSL.find({
-   '$regex': /String$/
-}));
-_print(MapDSL.find({
   '$and': [{
        foo: { '$eq': 7 },
     }, {
@@ -95,6 +91,69 @@ MapDSL.findAsync({ foo: { '$gt': 2 }, bar: { '$lt': 10 } }).then((results) => {
     console.log(error);
 });
 ```
+
+### Example: `MapDSL.chain()`
+```javascript
+const MapDSL = new (require('mapdsl/chainable'))(),
+      util = require('util');
+
+// Add some base data.
+MapDSL.set('testing0', {
+   foo: 4,
+   bar: 11
+});
+MapDSL.set('testing1', {
+   foo: 2,
+   bar: 9
+});
+MapDSL.set('testing2', {
+   foo: 8,
+   bar: 3
+});
+MapDSL.set('testing3', {
+   foo: 2,
+   bar: 100
+});
+
+// Generate a basic chained query.
+let $gt = MapDSL.chain().gt('foo', 3);
+
+// Generate a somewhat complex query for $or.
+let $or = MapDSL.chain().or((chain) => {
+    return [
+        chain.eq('foo', 4),
+        chain.eq('foo', 2)
+    ]
+});
+
+// Generate a more complex chained query for $and.
+let $and = MapDSL.chain().and((chain) => {
+    return [
+        chain.lt('foo', 5),
+        chain.or(() => {
+            return [
+                chain.lt('bar', 10),
+                chain.eq('bar', 100)
+            ];
+        })
+    ];
+});
+
+// Execute $gt!
+console.log('$gt query:\n%s\n', util.inspect($gt.query, { depth: null }));
+console.log('$gt results:\n%s\n', util.inspect($gt.execute(), { depth: null }));
+
+// Execute $or!
+console.log('$or query:\n%s\n', util.inspect($or.query, { depth: null }));
+console.log('$or results:\n%s\n', util.inspect($or.execute(), { depth: null }));
+
+// Execute $and!
+console.log('$and query:\n%s\n', util.inspect($and.query, { depth: null }));
+console.log('$and results:\n%s\n', util.inspect($and.execute(), { depth: null }));
+
+// List all entries.
+console.log('entries:\n%s', util.inspect([...MapDSL.entries()], { depth: null }));
+````
 
 [MongoDB]: https://www.mongodb.com/
 [ES6 Map()]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map

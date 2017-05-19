@@ -3,8 +3,8 @@
  * Licensed under the MIT license https://raw.githubusercontent.com/LouisT/MapDSL/master/LICENSE
  */
 'use strict';
-let MapDSL = new (require('../'))(),
-    assert = require('assert');
+const MapDSL = new (require('../chainable/'))(),
+      assert = require('assert');
 
 // Set extra data outside of the set tests,
 // keep terminal spam down.
@@ -93,6 +93,26 @@ describe('Get', () => {
         });
         it('it should find test7 with: { \'array\': [\'A\', \'B\', \'C\'] }', () => {
             assert.equal(MapDSL.find({ 'array': ['A', 'B', 'C'] })[0]._id, 'test7');
+        });
+    });
+    describe('#chain()', () => {
+        it('it should return "{ \'$eq\' : 10 }" for chain().eq(10).query', () => {
+            assert.deepEqual(MapDSL.chain().eq(10).query, { '$eq' : 10 });
+        });
+        it('it should return "{ foo: { \'$eq\' : 10 } }" for chain().eq(\'foo\', 10).query', () => {
+            assert.deepEqual(MapDSL.chain().eq('foo', 10).query, { foo: { '$eq' : 10 } });
+        });
+        it('it should return "{ foo: { \'$gt\' : 10 }, bar: { \'$lt\': 100 } }" for chain().gt(\'foo\', 10).lt(\'bar\', 100).query', () => {
+            assert.deepEqual(MapDSL.chain().gt('foo', 10).lt('bar', 100).query, { foo: { "$gt" : 10 }, bar: { "$lt": 100 } });
+        });
+        it('it should find test0 for chain().eq(10).execute()', () => {
+            assert.deepEqual(MapDSL.chain().eq(10).execute()[0]._id, 'test0');
+        });
+        it('it should find test1 for chain().eq(\'foo\',\'bar\').execute()', () => {
+            assert.deepEqual(MapDSL.chain().eq('foo', 'bar').execute()[0]._id, 'test1');
+        });
+        it('it should find test2 for chain().and((chain) => { return [chain.eq(\'bar\', 5), chain.lt(\'baz\', 10)] }).execute()', () => {
+            assert.deepEqual(MapDSL.chain().and((chain) => { return [chain.eq('bar', 5), chain.lt('baz', 10)] }).execute()[0]._id, 'test2');
         });
     });
 });

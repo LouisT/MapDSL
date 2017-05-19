@@ -1,6 +1,6 @@
 {
   "name": "mapdsl",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A MongoDB inspired ES6 Map() DSL.",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,8 @@
     "query",
     "dsl",
     "search",
-    "es6"
+    "es6",
+    "chain"
   ],
   "author": {
     "name": "Louis T.",
