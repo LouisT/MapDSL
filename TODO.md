@@ -9,6 +9,10 @@ TODO
 * While the "[is-equal]" lib does what I want, it's a bit big. Find a smaller solution!?
 * Document the chainable features.
   * Clean up the 'ChainManager' class in `./lib/` as well.
+* Document 'Cursor' and 'QueryResult'.
+* Document dot notation queries for object queries.
+    * Example: MapDSL.find({ 'foo.bar.baz': { '$gt': 10 } });
+* Document 'findAsync'.
 * Everything else.
   * Work on the TODO!
 

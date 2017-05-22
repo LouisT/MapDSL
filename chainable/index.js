@@ -11,7 +11,7 @@ const MapDSL = require('../lib/MapDSL'),
  *     {Instance}.chain().gt('foo', 5).lt('bar', 100).execute();
  */
 MapDSL.prototype.chain = function () {
-    return new ChainManager(this, require('../operators/Query'), require('../operators/Logical'));
+    return new ChainManager(this);
 }
 
 module.exports = MapDSL;
