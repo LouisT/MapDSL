@@ -3,10 +3,12 @@
  * Licensed under MIT license https://raw.githubusercontent.com/LouisT/MapDSL/master/LICENSE
  */
 'use strict';
+const Helpers = require('../lib/Helpers');
+
 module.exports = {
     '$regex': {
-        fn: (val, regex = null) => {
-           return (regex ? new RegExp(regex).test(val) : false);
+        fn: (val, regex = /./i) => {
+            return Helpers.is(regex, 'regexp') ? new RegExp(regex).test(val) : false;
         }
     }
 };

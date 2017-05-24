@@ -8,25 +8,21 @@ const Helpers = require('../lib/Helpers');
 module.exports = {
     '$exists': {
         chain: (key, val) => {
-            let isbool = (key === true || key === false),
-                check = (val !== null ? val : (isbool ? key : true));
-            return (!isbool || val !== null ? { [key] : { '$exists': check } } : { '$exists': check });
+            let isbool = Helpers.is(key, 'boolean'),
+                check = val !== Helpers._null ? val : (isbool ? key : true);
+            return !isbool || val !== Helpers._null ? { [key] : { '$exists': check } } : { '$exists': check };
         },
-        fn: (val, bool, keys, entry) => {
+        fn: (val, bool, keys = Helpers._null, entry) => {
             try {
-               return (bool === (Helpers.dotNotation(keys, entry[1]) !== undefined));
+               return bool === (Helpers.dotNotation(keys, entry[1]) !== undefined);
              } catch (error) {
-               return (keys === null ? (bool === undefined ? true : bool) : false);
+               return keys === Helpers._null ? (bool === undefined ? true : bool) : false;
             }
         }
     },
     '$type': {
         fn: (val, type) => {
-            try {
-               return Object.prototype.toString.call(val).toLowerCase() === `[object ${type.toLowerCase()}]`;
-             } catch (error) {
-               return false;
-            }
+            return Helpers.is(val, type);
         }
     }
 };
