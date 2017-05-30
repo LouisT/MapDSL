@@ -7,8 +7,8 @@ const Helpers = require('../lib/Helpers');
 
 module.exports = {
     '$regex': {
-        fn: (val, regex = /./i) => {
-            return Helpers.is(regex, 'regexp') ? new RegExp(regex).test(val) : false;
+        fn: (val, regex = /./gi) => {
+            return (Helpers.is(regex, 'regexp') ? new RegExp(regex) : new RegExp(regex, 'gi')).test(val);
         }
     }
 };
