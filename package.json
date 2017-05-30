@@ -1,6 +1,6 @@
 {
   "name": "mapdsl",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A MongoDB inspired ES6 Map() DSL.",
   "main": "index.js",
   "scripts": {
@@ -33,5 +33,8 @@
   },
   "dependencies": {
     "is-equal": "^1.5.5"
+  },
+  "engines": {
+    "node": ">=6.0.0"
   }
 }

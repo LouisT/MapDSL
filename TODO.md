@@ -13,6 +13,7 @@ TODO
 * Document dot notation queries for object queries.
     * Example: MapDSL.find({ 'foo.bar.baz': { '$gt': 10 } });
 * Document 'findAsync'.
+* Improve the ID generator; need to have a more (unique) uniform ID.
 * Everything else.
   * Work on the TODO!
 
