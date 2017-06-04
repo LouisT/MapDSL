@@ -25,6 +25,22 @@ try {
     MapDSL.set('test7', {
         array: ['A', 'B', 'C']
     });
+    MapDSL.set('test8', {
+        array: ['A2', 'B2', 'C2']
+    });
+    MapDSL.set('test9', {
+        foo: 1,
+        array: ['A3', 'C3', 'D3']
+    });
+    MapDSL.set('test10', {
+        foo: 'baz',
+        array: ['A3', 'C3', 'D3']
+    });
+    MapDSL.set('test11', {
+        array: ['A4', 'C4', 'D4', 'E4']
+    });
+    MapDSL.set('findByKey_0', 'This is an example.');
+    MapDSL.set('findByKey_1_A', 'This is an example.');
  } catch (e) {
 }
 describe('Set', () => {
@@ -93,6 +109,26 @@ describe('Get', () => {
         });
         it('it should find test7 with: { \'array\': [\'A\', \'B\', \'C\'] }', () => {
             assert.equal(MapDSL.find({ 'array': ['A', 'B', 'C'] })[0]._id, 'test7');
+        });
+        it('it should find test8 with: { \'array\': { \'$in\': [\'_A\'] } }', () => {
+            assert.equal(MapDSL.find({ 'array': { '$in': ['A2'] } })[0]._id, 'test8');
+        });
+        it('it should find test9 with: { foo: 1, \'array\': { \'$nin\': [\'_B\'] } }', () => {
+            assert.equal(MapDSL.find({ foo: 1, 'array': { '$nin': ['B3'] } })[0]._id, 'test9');
+        });
+        it('it should find test10 with: { foo: \'baz\', \'$where\': function () { return Array.isArray(this.array); } }', () => {
+            assert.equal(MapDSL.find({ foo: 'baz', '$where': function () { return Array.isArray(this.array); } })[0]._id, 'test10');
+        });
+        it('it should find test11 with: { \'array\': { \'$size\': 4 } }', () => {
+            assert.equal(MapDSL.find({ 'array': { '$size': 4 } })[0]._id, 'test11');
+        });
+    });
+    describe('#findByKey()', () => {
+        it('it should find findByKey_0 with: \'findByKey_0\'', () => {
+            assert.equal(MapDSL.findByKey('findByKey_0')[0]._id, 'findByKey_0');
+        });
+        it('it should find findByKey_1_A with: { \'$regex\': \'findByKey_\\\\d_A\' }', () => {
+            assert.equal(MapDSL.findByKey({ '$regex': 'findByKey_\\d_A' })[0]._id, 'findByKey_1_A');
         });
     });
     describe('#chain()', () => {

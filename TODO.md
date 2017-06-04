@@ -14,6 +14,8 @@ TODO
     * Example: MapDSL.find({ 'foo.bar.baz': { '$gt': 10 } });
 * Document 'findAsync'.
 * Improve the ID generator; need to have a more (unique) uniform ID.
+* Try to work out how to improve `$where` as if the entry is not an object it gets passed as an argument.
+    * Example: MapDSL.find({ '$where': function (arg) { return (this.foo || arg) == 1 } });
 * Everything else.
   * Work on the TODO!
 

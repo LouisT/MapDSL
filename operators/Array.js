@@ -4,5 +4,9 @@
  */
 'use strict';
 module.exports = {
-    // TODO: https://docs.mongodb.com/manual/reference/operator/query/#array
+    '$size': {
+        fn: (val, size) => {
+            return (Array.isArray(val) ? (parseInt(size, 10) == val.length) : false);
+        }
+    }
 };

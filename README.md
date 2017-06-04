@@ -7,14 +7,15 @@ This is a ___WIP___; do __NOT__ use in production yet! See [TODO](TODO.md) for m
 Implemented [Query Operators]
 ===
 * Comparison
-  * $eq, $gt, $gte, $lt, $lte, $ne
+  * $eq, $gt, $gte, $lt, $lte, $ne, $in, $nin
 * Logical
   * $or, $and
 * Element
   * $exists, $type
 * Evaluation
-  * $regex
+  * $regex, $where
 * Array
+  * $size
 
 ### Example: `MapDSL.find()`
 ```javascript
