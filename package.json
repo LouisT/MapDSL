@@ -1,7 +1,7 @@
 {
   "name": "mapdsl",
-  "version": "0.0.3",
-  "description": "A MongoDB inspired ES6 Map() DSL.",
+  "version": "0.0.4",
+  "description": "A MongoDB inspired ES6 Map() DSL. - Deprecated; renamed to MapQL.",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -16,7 +16,8 @@
     "dsl",
     "search",
     "es6",
-    "chain"
+    "chain",
+    "deprecated"
   ],
   "author": {
     "name": "Louis T.",

@@ -1,3 +1,5 @@
+# Deprecated; renamed to [MapQL].
+
 TODO
 ===
 * Add more query operators. See [MongoDB Query and Projection Operators] for reference.
@@ -22,3 +24,4 @@ TODO
 [MongoDB Query and Projection Operators]: https://docs.mongodb.com/manual/reference/operator/query/
 [Projection Operators]: https://docs.mongodb.com/manual/reference/operator/query/#projection-operators
 [is-equal]: https://www.npmjs.com/package/is-equal
+[MapQL]: https://github.com/LouisT/MapQL
